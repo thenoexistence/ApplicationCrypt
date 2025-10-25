@@ -1,15 +1,19 @@
+#подключение библиотек
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad, unpad
 
 # Генерация случайного ключа (16 байт = 128 бит)
 key = get_random_bytes(16)
+print(key)
 cipher = AES.new(key, AES.MODE_CBC)
 
 # Сообщение для шифрования
-data = b"Secret message"
+data = b"Hello"
 
-# Данные должны быть кратны 16 байтам, добавляем padding
+# pad() дополняет данные пустыми байтами, 
+# чтобы они делились на блоки фиксированной длины, 
+# заданные алгоритмом
 padded = pad(data, AES.block_size)
 
 # Шифруем
